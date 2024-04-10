@@ -5,9 +5,11 @@ import TodoList from "./components/TodoList";
 import TodoSearch from "./components/TodoSearch";
 
 function App() {
+  const complete = 10;
+  const total = 30;
   return (
     <>
-      <TodoCounter />
+      <TodoCounter complete={complete} total={total} />
       <TodoSearch />
       <TodoList>
         <TodoItems />
