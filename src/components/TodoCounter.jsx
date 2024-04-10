@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
-const TodoCounter = ({ complete, total }) => {
+const TodoCounter = ({ completed, total }) => {
   return (
     <h2>
-      Has completado {complete} de {total} TODOs
+      Has completado {completed} de {total} TODOs
     </h2>
   );
 };
