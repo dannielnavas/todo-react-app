@@ -10,7 +10,7 @@ function App() {
   const total = 30;
   const defaultTodos = [
     { text: "Cortar cebolla", completed: false },
-    { text: "Tomar el curso de intro a React", completed: false },
+    { text: "Tomar el curso de intro a React", completed: true },
     { text: "Llorrar con la Llorona", completed: false },
     { text: "Llamar", completed: false },
   ];
@@ -20,7 +20,7 @@ function App() {
       <TodoSearch />
       <TodoList>
         {defaultTodos.map((todo, index) => (
-          <TodoItems key={index} name={todo.text} />
+          <TodoItems key={index} name={todo.text} completed={todo.completed} />
         ))}
       </TodoList>
 

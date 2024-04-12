@@ -1,13 +1,16 @@
 /* eslint-disable react/prop-types */
-const TodoItems = ({ name }) => {
+
+import "./TodoItem.css";
+
+const TodoItems = ({ name, completed }) => {
   return (
-    <>
-      <li>
-        <span>V</span>
-        <p>{name}</p>
-        <span>X</span>
-      </li>
-    </>
+    <li className="TodoItem">
+      <span className={`Icon Icon-check ${completed && "Icon-check--active"}`}>
+        V
+      </span>
+      <p className={`TodoItem-p ${completed && "TodoItem-p--complete"}`}>{name}</p>
+      <span className="Icon Icon-delete">X</span>
+    </li>
   );
 };
 
