@@ -1,11 +1,7 @@
-import { useState } from "react";
+/* eslint-disable react/prop-types */
 import "./TodoSearch.css";
 
-const TodoSearch = () => {
-  const [searchValue, setSearchValue] = useState("");
-
-  console.log(searchValue);
-
+const TodoSearch = ({ searchValue, setSearchValue }) => {
   return (
     <input
       placeholder="Cortar cebolla"
