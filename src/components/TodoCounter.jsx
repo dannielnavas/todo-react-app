@@ -10,7 +10,7 @@ const TodoCounter = ({ completed, total }) => {
     // </h2>
 
     <h1 className="TodoCounter">
-      Has completado <span>{completed}</span> de <span>{total}</span> TODOs
+      {total > 0 ? `Has completado ${completed} de ${total} TODOs` : "No hay TODOs"}
     </h1>
   );
 };
