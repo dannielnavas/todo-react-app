@@ -7,20 +7,13 @@ import TodoList from "./components/TodoList";
 import TodoSearch from "./components/TodoSearch";
 
 function App() {
+  let parsedTodos = JSON.parse(localStorage.getItem("todos"));
+
   const [searchValue, setSearchValue] = useState("");
+  const [todos, setTodos] = useState(parsedTodos);
 
-  console.log(searchValue);
-
-  const [todos, setTodos] = useState([
-    { text: "Cortar cebolla", completed: false },
-    { text: "Tomar el curso de intro a React", completed: true },
-    { text: "Llorrar con la Llorona", completed: false },
-    { text: "Llamar", completed: false },
-  ]);
-
-  const completed = todos.filter((todo) => !!todo.completed).length;
   const total = todos.length;
-
+  const completed = todos.filter((todo) => !!todo.completed).length;
   const searchedTodo = todos.filter((todo) => {
     const textTodo = todo.text.toLowerCase();
     const searchText = searchValue.toLowerCase();
@@ -33,6 +26,7 @@ function App() {
     const newTodos = [...todos]; // Copia el array de todos
     newTodos[todoIndex].completed = true; // Cambia el valor de completed a true
     setTodos(newTodos); // Actualiza el estado de todos
+    localStorage.setItem("todos", JSON.stringify(todos)); // Actualiza el localStorage
   };
 
   const deleteTodo = (text) => {
@@ -42,6 +36,7 @@ function App() {
 
     const newTodos = todos.filter((todo) => todo.text !== text); // Filtra los todos que no sean el que se quiere eliminar
     setTodos(newTodos); // Actualiza el estado de todos
+    localStorage.setItem("todos", JSON.stringify(todos)); // Actualiza el localStorage
   };
 
   return (
