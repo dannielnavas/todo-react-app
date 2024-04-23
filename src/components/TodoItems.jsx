@@ -1,22 +1,21 @@
 /* eslint-disable react/prop-types */
 
+import CompleteIcon from "../icons/CompleteIcon";
+import DeleteIcon from "../icons/DeleteIcon";
 import "./TodoItem.css";
 
-const TodoItems = ({ name, completed, onComplete, onDelete }) => {
+const TodoItem = (props) => {
   return (
     <li className="TodoItem">
-      <span
-        className={`Icon Icon-check ${completed && "Icon-check--active"}`}
-        onClick={onComplete}
-      >
-        V
-      </span>
-      <p className={`TodoItem-p ${completed && "TodoItem-p--complete"}`}>{name}</p>
-      <span className="Icon Icon-delete" onClick={onDelete}>
-        X
-      </span>
+      <CompleteIcon completed={props.completed} onComplete={props.onComplete} />
+
+      <p className={`TodoItem-p ${props.completed && "TodoItem-p--complete"}`}>
+        {props.name}
+      </p>
+
+      <DeleteIcon onDelete={props.onDelete} />
     </li>
   );
 };
 
-export default TodoItems;
+export default TodoItem;
