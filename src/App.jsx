@@ -7,7 +7,14 @@ import TodoList from "./components/TodoList";
 import TodoSearch from "./components/TodoSearch";
 
 function App() {
-  let parsedTodos = JSON.parse(localStorage.getItem("todos"));
+  let localStorageTodos = JSON.parse(localStorage.getItem("todos"));
+  let parsedTodos;
+  if (!localStorageTodos) {
+    localStorage.setItem("todos", JSON.stringify([]));
+    parsedTodos = [];
+  } else {
+    parsedTodos = localStorageTodos;
+  }
 
   const [searchValue, setSearchValue] = useState("");
   const [todos, setTodos] = useState(parsedTodos);
@@ -21,12 +28,18 @@ function App() {
     return textTodo.includes(searchText);
   });
 
+  const saveTodos = (newTodos) => {
+    const stringifiedTodos = JSON.stringify(newTodos);
+    localStorage.setItem("todos", stringifiedTodos);
+    setTodos(newTodos);
+  };
+
   const completeTodo = (text) => {
     const todoIndex = todos.findIndex((todo) => todo.text === text); // Encuentra el index del todo que se quiere completar
     const newTodos = [...todos]; // Copia el array de todos
     newTodos[todoIndex].completed = true; // Cambia el valor de completed a true
-    setTodos(newTodos); // Actualiza el estado de todos
-    localStorage.setItem("todos", JSON.stringify(todos)); // Actualiza el localStorage
+    // setTodos(newTodos); // Actualiza el estado de todos
+    saveTodos(todos); // Actualiza el localStorage
   };
 
   const deleteTodo = (text) => {
@@ -35,8 +48,8 @@ function App() {
     // newTodos.splice(todoIndex, 1); // Elimina el todo del array
 
     const newTodos = todos.filter((todo) => todo.text !== text); // Filtra los todos que no sean el que se quiere eliminar
-    setTodos(newTodos); // Actualiza el estado de todos
-    localStorage.setItem("todos", JSON.stringify(todos)); // Actualiza el localStorage
+    // setTodos(newTodos); // Actualiza el estado de todos
+    saveTodos(newTodos); // Actualiza el localStorage
   };
 
   return (
