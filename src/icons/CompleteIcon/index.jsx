@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import { TodoIcon } from "./TodoIcon";
+import { TodoIcon } from "../TodoIcon";
 
 const CompleteIcon = ({ completed, onComplete }) => {
   return (

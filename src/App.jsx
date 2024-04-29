@@ -1,23 +1,15 @@
 import { useState } from "react";
 import "./App.css";
-import CreateTodoButton from "./components/CreateTodoButton";
+import CreateTodoButton from "./components/CreateTodo";
 import TodoCounter from "./components/TodoCounter";
 import TodoItems from "./components/TodoItems";
 import TodoList from "./components/TodoList";
 import TodoSearch from "./components/TodoSearch";
+import useLocalStorage from "./hook/useLocalStorage";
 
 function App() {
-  let localStorageTodos = JSON.parse(localStorage.getItem("todos"));
-  let parsedTodos;
-  if (!localStorageTodos) {
-    localStorage.setItem("todos", JSON.stringify([]));
-    parsedTodos = [];
-  } else {
-    parsedTodos = localStorageTodos;
-  }
-
   const [searchValue, setSearchValue] = useState("");
-  const [todos, setTodos] = useState(parsedTodos);
+  const [todos, saveTodos] = useLocalStorage("TODOS_V1", []);
 
   const total = todos.length;
   const completed = todos.filter((todo) => !!todo.completed).length;
@@ -27,12 +19,6 @@ function App() {
 
     return textTodo.includes(searchText);
   });
-
-  const saveTodos = (newTodos) => {
-    const stringifiedTodos = JSON.stringify(newTodos);
-    localStorage.setItem("todos", stringifiedTodos);
-    setTodos(newTodos);
-  };
 
   const completeTodo = (text) => {
     const todoIndex = todos.findIndex((todo) => todo.text === text); // Encuentra el index del todo que se quiere completar

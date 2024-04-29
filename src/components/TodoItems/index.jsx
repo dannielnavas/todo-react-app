@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
-import CompleteIcon from "../icons/CompleteIcon";
-import DeleteIcon from "../icons/DeleteIcon";
+import CompleteIcon from "../../icons/CompleteIcon";
+import DeleteIcon from "../../icons/DeleteIcon";
 import "./TodoItem.css";
 
 const TodoItem = (props) => {
