@@ -13,12 +13,18 @@ const AppUI = ({
   searchedTodo,
   completeTodo,
   deleteTodo,
+  loading,
+  error,
 }) => {
   return (
     <>
       <TodoCounter completed={completed} total={total} />
       <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
       <TodoList>
+        {loading && <p>Cargando...</p>}
+        {error && <p>Hubo un error</p>}
+        {!loading && !searchedTodo.length && <p>¡Crea tu primer TODO!</p>}
+
         {searchedTodo.map((todo, index) => (
           <TodoItems
             key={index}
