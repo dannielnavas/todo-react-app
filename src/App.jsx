@@ -6,7 +6,12 @@ import useLocalStorage from "./hook/useLocalStorage";
 
 function App() {
   const [searchValue, setSearchValue] = useState("");
-  const [todos, saveTodos] = useLocalStorage("TODOS_V1", []);
+  const {
+    items: todos,
+    saveItem: saveTodos,
+    loading,
+    error,
+  } = useLocalStorage("TODOS_V1", []);
 
   const total = todos.length;
   const completed = todos.filter((todo) => !!todo.completed).length;
@@ -44,6 +49,8 @@ function App() {
       searchedTodo={searchedTodo}
       completeTodo={completeTodo}
       deleteTodo={deleteTodo}
+      loading={loading}
+      error={error}
     />
   );
 }
