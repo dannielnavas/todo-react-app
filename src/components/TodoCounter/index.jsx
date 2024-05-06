@@ -1,7 +1,10 @@
+import { useContext } from "react";
+import { TodoContext } from "./../../TodoContext";
 import "./TodoCounter.css";
 
 /* eslint-disable react/prop-types */
-const TodoCounter = ({ completed, total }) => {
+const TodoCounter = () => {
+  const { completed, total } = useContext(TodoContext);
   return (
     // <h2
     //   style={{ fontSize: "24px", textAlign: "center", margin: 0, padding: "48px" }}
