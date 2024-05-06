@@ -1,9 +1,12 @@
 /* eslint-disable react/prop-types */
 import CreateTodoButton from "./components/CreateTodo";
+import EmptyTodos from "./components/EmptyTodos";
 import TodoCounter from "./components/TodoCounter";
 import TodoItems from "./components/TodoItems";
 import TodoList from "./components/TodoList";
 import TodoSearch from "./components/TodoSearch";
+import TodosError from "./components/TodosError";
+import TodosLoading from "./components/TodosLoading";
 
 const AppUI = ({
   total,
@@ -21,9 +24,9 @@ const AppUI = ({
       <TodoCounter completed={completed} total={total} />
       <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
       <TodoList>
-        {loading && <p>Cargando...</p>}
-        {error && <p>Hubo un error</p>}
-        {!loading && !searchedTodo.length && <p>¡Crea tu primer TODO!</p>}
+        {loading && <TodosLoading />}
+        {error && <TodosError />}
+        {!loading && !searchedTodo.length && <EmptyTodos />}
 
         {searchedTodo.map((todo, index) => (
           <TodoItems
