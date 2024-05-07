@@ -1,16 +1,19 @@
 /* eslint-disable react/prop-types */
+import { useContext } from "react";
+import { TodoContext } from "./TodoContext";
 import CreateTodoButton from "./components/CreateTodo";
 import EmptyTodos from "./components/EmptyTodos";
+import Modal from "./components/Modal";
 import TodoCounter from "./components/TodoCounter";
+import TodoForm from "./components/TodoForm";
 import TodoItems from "./components/TodoItems";
 import TodoList from "./components/TodoList";
 import TodoSearch from "./components/TodoSearch";
 import TodosError from "./components/TodosError";
 import TodosLoading from "./components/TodosLoading";
 
-import { TodoContext } from "./TodoContext";
-
 const AppUI = () => {
+  const { openModal, setOpenModal } = useContext(TodoContext);
   return (
     <>
       <TodoCounter />
@@ -35,7 +38,13 @@ const AppUI = () => {
           </div>
         )}
       </TodoContext.Consumer>
-      <CreateTodoButton />
+      <CreateTodoButton setOpenModal={setOpenModal} />
+
+      {openModal && (
+        <Modal>
+          <TodoForm />
+        </Modal>
+      )}
     </>
   );
 };
