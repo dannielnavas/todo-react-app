@@ -1,11 +1,11 @@
+/* eslint-disable react/prop-types */
 import "./CreateTodoButton.css";
-const CreateTodoButton = () => {
+const CreateTodoButton = ({ setOpenModal }) => {
   return (
     <button
       className="CreateTodoButton"
-      onClick={(event) => {
-        console.log(event);
-        console.log(event.target);
+      onClick={() => {
+        setOpenModal((state) => !state);
       }}
     >
       +
