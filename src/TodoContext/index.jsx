@@ -7,6 +7,7 @@ const TodoContext = createContext();
 
 const TodoProvider = ({ children }) => {
   const [searchValue, setSearchValue] = useState("");
+  const [openModal, setOpenModal] = useState(false);
   const {
     items: todos,
     saveItem: saveTodos,
@@ -52,6 +53,8 @@ const TodoProvider = ({ children }) => {
         deleteTodo,
         loading,
         error,
+        openModal,
+        setOpenModal,
       }}
     >
       {children}
