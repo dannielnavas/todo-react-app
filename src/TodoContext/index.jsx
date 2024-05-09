@@ -41,6 +41,16 @@ const TodoProvider = ({ children }) => {
     // setTodos(newTodos); // Actualiza el estado de todos
     saveTodos(newTodos); // Actualiza el localStorage
   };
+
+  const addTodo = (text) => {
+    const newTodos = [...todos]; // Copia el array de todos
+    newTodos.push({
+      text,
+      completed: false,
+    });
+    saveTodos(newTodos); // Actualiza el localStorage
+  };
+
   return (
     <TodoContext.Provider
       value={{
@@ -55,6 +65,7 @@ const TodoProvider = ({ children }) => {
         error,
         openModal,
         setOpenModal,
+        addTodo,
       }}
     >
       {children}
