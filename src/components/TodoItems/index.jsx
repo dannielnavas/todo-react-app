@@ -4,7 +4,7 @@ import CompleteIcon from "../../icons/CompleteIcon";
 import DeleteIcon from "../../icons/DeleteIcon";
 import "./TodoItem.css";
 
-const TodoItem = (props) => {
+const TodoItems = (props) => {
   return (
     <li className="TodoItem">
       <CompleteIcon completed={props.completed} onComplete={props.onComplete} />
@@ -18,4 +18,4 @@ const TodoItem = (props) => {
   );
 };
 
-export default TodoItem;
+export default TodoItems;
