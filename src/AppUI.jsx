@@ -13,8 +13,15 @@ import TodosError from "./components/TodosError";
 import TodosLoading from "./components/TodosLoading";
 
 const AppUI = () => {
-  const { openModal, setOpenModal, completed, total, searchValue, setSearchValue } =
-    useContext(TodoContext);
+  const {
+    openModal,
+    setOpenModal,
+    completed,
+    total,
+    searchValue,
+    setSearchValue,
+    addTodo,
+  } = useContext(TodoContext);
   return (
     <>
       <TodoCounter completed={completed} total={total} />
@@ -43,7 +50,7 @@ const AppUI = () => {
 
       {openModal && (
         <Modal>
-          <TodoForm />
+          <TodoForm setOpenModal={setOpenModal} addTodo={addTodo} />
         </Modal>
       )}
     </>
