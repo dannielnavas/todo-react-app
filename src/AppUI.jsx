@@ -13,11 +13,12 @@ import TodosError from "./components/TodosError";
 import TodosLoading from "./components/TodosLoading";
 
 const AppUI = () => {
-  const { openModal, setOpenModal } = useContext(TodoContext);
+  const { openModal, setOpenModal, completed, total, searchValue, setSearchValue } =
+    useContext(TodoContext);
   return (
     <>
-      <TodoCounter />
-      <TodoSearch />
+      <TodoCounter completed={completed} total={total} />
+      <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
       <TodoContext.Consumer>
         {({ searchedTodo, completeTodo, deleteTodo, loading, error }) => (
           <div>

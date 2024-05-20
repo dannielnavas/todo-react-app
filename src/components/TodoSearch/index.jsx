@@ -1,11 +1,7 @@
 /* eslint-disable react/prop-types */
-import { useContext } from "react";
-import { TodoContext } from "./../../TodoContext";
 import "./TodoSearch.css";
 
-const TodoSearch = () => {
-  const { searchValue, setSearchValue } = useContext(TodoContext);
-
+const TodoSearch = ({ searchValue, setSearchValue }) => {
   return (
     <input
       placeholder="Cortar cebolla"
