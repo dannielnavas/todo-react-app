@@ -1,9 +1,8 @@
-import { useContext, useState } from "react";
-import { TodoContext } from "./../../TodoContext";
+/* eslint-disable react/prop-types */
+import { useState } from "react";
 import "./TodoForm.css";
 
-const TodoForm = () => {
-  const { setOpenModal, addTodo } = useContext(TodoContext);
+const TodoForm = ({ setOpenModal, addTodo }) => {
   const [newTodoValue, setNewTodoValue] = useState("");
 
   const onSubmit = (event) => {
