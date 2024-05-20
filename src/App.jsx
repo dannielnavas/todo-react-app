@@ -34,22 +34,21 @@ function App() {
       <TodoCounter completed={completed} total={total} />
       <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
 
-      <div>
+      <TodoList>
         {error && <TodosError error={error} />}
         {loading && <TodosLoading />}
         {!loading && !searchedTodo.length && <EmptyTodos />}
-        <TodoList>
-          {searchedTodo?.map((todo) => (
-            <TodoItems
-              key={todo.text}
-              text={todo.text}
-              completed={todo.completed}
-              onComplete={() => completeTodo(todo.text)}
-              onDelete={() => deleteTodo(todo.text)}
-            />
-          ))}
-        </TodoList>
-      </div>
+
+        {searchedTodo?.map((todo) => (
+          <TodoItems
+            key={todo.text}
+            text={todo.text}
+            completed={todo.completed}
+            onComplete={() => completeTodo(todo.text)}
+            onDelete={() => deleteTodo(todo.text)}
+          />
+        ))}
+      </TodoList>
 
       <CreateTodoButton setOpenModal={setOpenModal} />
 
