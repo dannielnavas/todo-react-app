@@ -38,10 +38,28 @@ function App() {
         error={error}
         loading={loading}
         searchedTodo={searchedTodo}
+        total={total}
+        searchValue={searchValue}
         onError={() => <TodosError />}
         onLoading={() => <TodosLoading />}
         onEmptyTodos={() => <EmptyTodos />}
-        render={(todo) => (
+        onEmptySearchResults={(searchText) => (
+          <p>No hay resultados para: {searchText}</p>
+        )}
+        // TODO: RENDER PROPS
+        // render={(todo) => (
+        //   <TodoItems
+        //     key={todo.text}
+        //     text={todo.text}
+        //     completed={todo.completed}
+        //     onComplete={() => completeTodo(todo.text)}
+        //     onDelete={() => deleteTodo(todo.text)}
+        //   />
+        // )}
+      >
+        {/* RENDER FUNCTION */}
+
+        {(todo) => (
           <TodoItems
             key={todo.text}
             text={todo.text}
@@ -50,7 +68,7 @@ function App() {
             onDelete={() => deleteTodo(todo.text)}
           />
         )}
-      >
+
         {/* {error && <TodosError error={error} />}
         {loading && <TodosLoading />}
         {!loading && !searchedTodo.length && <EmptyTodos />} */}

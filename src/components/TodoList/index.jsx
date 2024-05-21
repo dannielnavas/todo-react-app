@@ -9,16 +9,21 @@ const TodoList = ({
   loading,
   onLoading,
   searchedTodo,
+  onEmptySearchResults,
   onEmptyTodos,
   render,
+  total,
+  searchValue,
 }) => {
+  const renderFunc = children || render;
   return (
     <section className="TodoList-Container">
       {error && onError()}
       {loading && onLoading()}
-      {!loading && !searchedTodo?.length && onEmptyTodos()}
-      {searchedTodo?.map(render)}
-      <ul className="TodoList">{children}</ul>
+      {!loading && !total && onEmptyTodos()}
+      {!!total && !searchedTodo.length && onEmptySearchResults(searchValue)}
+      {searchedTodo?.map(renderFunc)}
+      {/* <ul className="TodoList">{children}</ul> */}
     </section>
   );
 };
