@@ -32,7 +32,11 @@ function App() {
   return (
     <>
       <TodoCounter completed={completed} total={total} />
-      <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
+      <TodoSearch
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+        loading={loading}
+      />
 
       <TodoList
         error={error}
