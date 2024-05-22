@@ -11,6 +11,7 @@ const useTodos = () => {
     saveItem: saveTodos,
     loading,
     error,
+    sincronize,
   } = useLocalStorage("TODOS_V1", []);
 
   const total = todos.length;
@@ -62,6 +63,7 @@ const useTodos = () => {
     openModal,
     setOpenModal,
     addTodo,
+    sincronize,
   };
 };
 

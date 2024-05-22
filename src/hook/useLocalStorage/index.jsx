@@ -6,6 +6,8 @@ const useLocalStorage = (itemName, initialValue) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
+  const [sincronizedItem, setSincronizedItem] = useState(true);
+
   React.useEffect(() => {
     setTimeout(() => {
       try {
@@ -19,12 +21,13 @@ const useLocalStorage = (itemName, initialValue) => {
           setItem(parsedItem);
         }
         setLoading(false);
+        setSincronizedItem(true);
       } catch (error) {
         setLoading(false);
         setError(true);
       }
     }, 2000);
-  }, []);
+  }, [sincronizedItem]);
 
   const saveItem = (newItem) => {
     const stringifiedTodos = JSON.stringify(newItem);
@@ -32,7 +35,12 @@ const useLocalStorage = (itemName, initialValue) => {
     setItem(newItem);
   };
 
-  return { items, saveItem, loading, error };
+  const sincronize = () => {
+    setLoading(true);
+    setSincronizedItem(false);
+  };
+
+  return { items, saveItem, loading, error, sincronize };
 };
 
 export default useLocalStorage;

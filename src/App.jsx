@@ -1,4 +1,5 @@
 import "./App.css";
+import ChangeAlertWithStorageListener from "./components/ChangeAlert";
 
 import CreateTodoButton from "./components/CreateTodo";
 import EmptyTodos from "./components/EmptyTodos";
@@ -26,6 +27,7 @@ function App() {
     searchValue,
     setSearchValue,
     addTodo,
+    sincronize,
   } = useTodos();
 
   console.log(searchedTodo);
@@ -89,6 +91,8 @@ function App() {
       </TodoList>
 
       <CreateTodoButton setOpenModal={setOpenModal} />
+
+      <ChangeAlertWithStorageListener sincronize={sincronize} />
 
       {openModal && (
         <Modal>
