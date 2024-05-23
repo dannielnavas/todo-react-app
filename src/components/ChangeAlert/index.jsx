@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
-import withStorageListener from "./withStorageListener";
-function ChangeAlert({ show, toggleShow }) {
+import useStorageListener from "../../hook/useStorageListener";
+function ChangeAlert({ sincronize }) {
+  const { show, toggleShow } = useStorageListener(sincronize);
   if (show) {
     return (
       <div>
@@ -12,5 +13,5 @@ function ChangeAlert({ show, toggleShow }) {
     return null;
   }
 }
-const ChangeAlertWithStorageListener = withStorageListener(ChangeAlert);
-export default ChangeAlertWithStorageListener;
+// const ChangeAlertWithStorageListener = withStorageListener(ChangeAlert);
+export default ChangeAlert;

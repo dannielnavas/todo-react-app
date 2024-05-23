@@ -1,5 +1,5 @@
 import "./App.css";
-import ChangeAlertWithStorageListener from "./components/ChangeAlert";
+import ChangeAlert from "./components/ChangeAlert";
 
 import CreateTodoButton from "./components/CreateTodo";
 import EmptyTodos from "./components/EmptyTodos";
@@ -92,7 +92,8 @@ function App() {
 
       <CreateTodoButton setOpenModal={setOpenModal} />
 
-      <ChangeAlertWithStorageListener sincronize={sincronize} />
+      {/* <ChangeAlertWithStorageListener sincronize={sincronize} /> */}
+      <ChangeAlert sincronize={sincronize} />
 
       {openModal && (
         <Modal>
