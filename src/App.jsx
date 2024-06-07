@@ -14,21 +14,19 @@ import TodosLoading from "./components/TodosLoading";
 import { useTodos } from "./hook/useTodos";
 
 function App() {
+  const { states, stateUpdaters } = useTodos();
+
+  const { total, completed, searchValue, searchedTodo, loading, error, openModal } =
+    states;
+
   const {
-    error,
-    loading,
-    searchedTodo,
+    setSearchValue,
     completeTodo,
     deleteTodo,
-    openModal,
     setOpenModal,
-    total,
-    completed,
-    searchValue,
-    setSearchValue,
     addTodo,
     sincronize,
-  } = useTodos();
+  } = stateUpdaters;
 
   console.log(searchedTodo);
   return (

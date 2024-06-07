@@ -50,20 +50,28 @@ const useTodos = () => {
     saveTodos(newTodos); // Actualiza el localStorage
   };
 
-  return {
+  const states = {
     total,
     completed,
     searchValue,
-    setSearchValue,
     searchedTodo,
-    completeTodo,
-    deleteTodo,
     loading,
     error,
     openModal,
+  };
+
+  const stateUpdaters = {
+    setSearchValue,
+    completeTodo,
+    deleteTodo,
     setOpenModal,
     addTodo,
     sincronize,
+  };
+
+  return {
+    ...states,
+    ...stateUpdaters,
   };
 };
 
