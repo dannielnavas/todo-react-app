@@ -14,24 +14,30 @@ import TodosLoading from "./components/TodosLoading";
 import { useTodos } from "./hook/useTodos";
 
 function App() {
-  const { states, stateUpdaters } = useTodos();
-
-  const { total, completed, searchValue, searchedTodo, loading, error, openModal } =
-    states;
+  const { state, stateUpdaters } = useTodos();
 
   const {
-    setSearchValue,
-    completeTodo,
-    deleteTodo,
+    error,
+    loading,
+    searchedTodos,
+    totalTodos,
+    completedTodos,
+    openModal,
+    searchValue,
+  } = state;
+  const {
     setOpenModal,
     addTodo,
-    sincronize,
+    completeTodo,
+    deleteTodo,
+    setSearchValue,
+    sincronizeTodos,
   } = stateUpdaters;
 
-  console.log(searchedTodo);
+  console.log(searchedTodos);
   return (
     <>
-      <TodoCounter completed={completed} total={total} />
+      <TodoCounter completed={completedTodos} total={totalTodos} />
       <TodoSearch
         searchValue={searchValue}
         setSearchValue={setSearchValue}
@@ -41,8 +47,8 @@ function App() {
       <TodoList
         error={error}
         loading={loading}
-        searchedTodo={searchedTodo}
-        total={total}
+        searchedTodo={searchedTodos}
+        total={totalTodos}
         searchValue={searchValue}
         onError={() => <TodosError />}
         onLoading={() => <TodosLoading />}
@@ -91,7 +97,7 @@ function App() {
       <CreateTodoButton setOpenModal={setOpenModal} />
 
       {/* <ChangeAlertWithStorageListener sincronize={sincronize} /> */}
-      <ChangeAlert sincronize={sincronize} />
+      <ChangeAlert sincronize={sincronizeTodos} />
 
       {openModal && (
         <Modal>

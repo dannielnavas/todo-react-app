@@ -1,78 +1,61 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-undef */
-import { useState } from "react";
-import useLocalStorage from "../useLocalStorage";
-
-const useTodos = () => {
-  const [searchValue, setSearchValue] = useState("");
-  const [openModal, setOpenModal] = useState(false);
+import React from "react";
+import { useLocalStorage } from "../useLocalStorage";
+function useTodos() {
   const {
-    items: todos,
+    item: todos,
     saveItem: saveTodos,
+    sincronizeItem: sincronizeTodos,
     loading,
     error,
-    sincronize,
   } = useLocalStorage("TODOS_V1", []);
-  console.log(todos);
-  const total = todos?.length;
-  const completed = todos?.filter((todo) => !!todo.completed).length;
-  const searchedTodo = todos?.filter((todo) => {
-    const textTodo = todo.text.toLowerCase();
-    const searchText = searchValue.toLowerCase();
-
-    return textTodo.includes(searchText);
-  });
-
-  const completeTodo = (text) => {
-    const todoIndex = todos?.findIndex((todo) => todo.text === text); // Encuentra el index del todo que se quiere completar
-    const newTodos = [...todos]; // Copia el array de todos
-    newTodos[todoIndex].completed = true; // Cambia el valor de completed a true
-    // setTodos(newTodos); // Actualiza el estado de todos
-    saveTodos(todos); // Actualiza el localStorage
-  };
-
-  const deleteTodo = (text) => {
-    // const todoIndex = todos?.findIndex((todo) => todo.text === text); // Encuentra el index del todo que se quiere eliminar
-    // const newTodos = [...todos]; // Copia el array de todos
-    // newTodos?.splice(todoIndex, 1); // Elimina el todo del array
-
-    const newTodos = todos?.filter((todo) => todo.text !== text); // Filtra los todos que no sean el que se quiere eliminar
-    // setTodos(newTodos); // Actualiza el estado de todos
-    saveTodos(newTodos); // Actualiza el localStorage
-  };
-
-  const addTodo = (text) => {
-    const newTodos = [...todos]; // Copia el array de todos
-    newTodos?.push({
-      text,
-      completed: false,
+  const [searchValue, setSearchValue] = React.useState("");
+  const [openModal, setOpenModal] = React.useState(false);
+  const completedTodos = todos.filter((todo) => !!todo.completed).length;
+  const totalTodos = todos.length;
+  let searchedTodos = [];
+  if (!searchValue.length >= 1) {
+    searchedTodos = todos;
+  } else {
+    searchedTodos = todos.filter((todo) => {
+      const todoText = todo.text.toLowerCase();
+      const searchText = searchValue.toLowerCase();
+      return todoText.includes(searchText);
     });
-    saveTodos(newTodos); // Actualiza el localStorage
+  }
+  const addTodo = (text) => {
+    const newTodos = [...todos];
+    newTodos.push({ completed: false, text });
+    saveTodos(newTodos);
   };
-
-  const states = {
-    total,
-    completed,
-    searchValue,
-    searchedTodo,
+  const completeTodo = (text) => {
+    const todoIndex = todos.findIndex((todo) => todo.text === text);
+    const newTodos = [...todos];
+    newTodos[todoIndex].completed = true;
+    saveTodos(newTodos);
+  };
+  const deleteTodo = (text) => {
+    const todoIndex = todos.findIndex((todo) => todo.text === text);
+    const newTodos = [...todos];
+    newTodos.splice(todoIndex, 1);
+    saveTodos(newTodos);
+  };
+  const state = {
     loading,
     error,
+    totalTodos,
+    completedTodos,
+    searchValue,
+    searchedTodos,
     openModal,
   };
-
   const stateUpdaters = {
     setSearchValue,
+    addTodo,
     completeTodo,
     deleteTodo,
     setOpenModal,
-    addTodo,
-    sincronize,
+    sincronizeTodos,
   };
-
-  return {
-    ...states,
-    ...stateUpdaters,
-  };
-};
-
+  return { state, stateUpdaters };
+}
 export { useTodos };
