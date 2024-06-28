@@ -24,8 +24,8 @@ const TodoProvider = ({ children }) => {
     return textTodo.includes(searchText);
   });
 
-  const completeTodo = (text) => {
-    const todoIndex = todos.findIndex((todo) => todo.text === text); // Encuentra el index del todo que se quiere completar
+  const completeTodo = (id) => {
+    const todoIndex = todos.findIndex((todo) => todo.id === id); // Encuentra el index del todo que se quiere completar
     const newTodos = [...todos]; // Copia el array de todos
     newTodos[todoIndex].completed = true; // Cambia el valor de completed a true
     // setTodos(newTodos); // Actualiza el estado de todos
