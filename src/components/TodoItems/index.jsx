@@ -2,6 +2,7 @@
 
 import CompleteIcon from "../../icons/CompleteIcon";
 import DeleteIcon from "../../icons/DeleteIcon";
+import EditIcon from "../../icons/EditIcon";
 import "./TodoItem.css";
 
 const TodoItems = (props) => {
@@ -12,7 +13,7 @@ const TodoItems = (props) => {
       <p className={`TodoItem-p ${props.completed && "TodoItem-p--complete"}`}>
         {props.text}
       </p>
-
+      <EditIcon onEdit={props.onEdit} />
       <DeleteIcon onDelete={props.onDelete} />
     </li>
   );
