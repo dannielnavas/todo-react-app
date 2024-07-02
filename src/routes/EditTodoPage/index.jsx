@@ -1,9 +1,12 @@
+import { TodoForm } from "../../components/TodoForm";
+
 const EditPage = () => {
   return (
-    <div>
-      <h1>Edit Todo</h1>
-      {/* <EditTodoForm /> */}
-    </div>
+    <TodoForm
+      label="Edita tu todo"
+      submitText="Editar"
+      submitEvent={() => console.log("Editar todo")}
+    />
   );
 };
 
