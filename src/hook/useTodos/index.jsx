@@ -22,24 +22,28 @@ function useTodos() {
       return todoText.includes(searchText);
     });
   }
+
   const addTodo = (text) => {
     const newTodos = [...todos];
     const id = newTodoId(todos);
     newTodos.push({ completed: false, text, id });
     saveTodos(newTodos);
   };
+
   const completeTodo = (id) => {
     const todoIndex = todos.findIndex((todo) => todo.id === id);
     const newTodos = [...todos];
     newTodos[todoIndex].completed = true;
     saveTodos(newTodos);
   };
+
   const deleteTodo = (id) => {
     const todoIndex = todos.findIndex((todo) => todo.id === id);
     const newTodos = [...todos];
     newTodos.splice(todoIndex, 1);
     saveTodos(newTodos);
   };
+
   const newTodoId = (todoList) => {
     const idList = todoList.map((todo) => todo.id);
     const idMax = idList.length ? Math.max(...idList) + 1 : 1;
@@ -53,6 +57,11 @@ function useTodos() {
     saveTodos(newTodos);
   };
 
+  const getTodo = (id) => {
+    const todo = todos.find((todo) => todo.id === id);
+    return todo;
+  };
+
   const state = {
     loading,
     error,
@@ -60,6 +69,7 @@ function useTodos() {
     completedTodos,
     searchValue,
     searchedTodos,
+    getTodo,
     // openModal,
   };
   const stateUpdaters = {
